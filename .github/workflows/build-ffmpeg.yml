@@ -77,8 +77,18 @@ jobs:
         $GITHUB_WORKSPACE/scripts/setup-build.sh
       shell: bash
 
-    - name: Build FFmpeg
-      shell: ${{ matrix.os == 'windows-2022' && 'msys2 {0}' || 'bash' }}
+    - name: Build FFmpeg (Windows)
+      if: matrix.os == 'windows-2022'
+      shell: msys2 {0}
+      run: |
+        chmod +x $GITHUB_WORKSPACE/scripts/build-ffmpeg.sh
+        $GITHUB_WORKSPACE/scripts/build-ffmpeg.sh
+      env:
+        OS_TYPE: ${{ matrix.os }}
+
+    - name: Build FFmpeg (Linux)
+      if: matrix.os == 'ubuntu-24.04'
+      shell: bash
       run: |
         chmod +x $GITHUB_WORKSPACE/scripts/build-ffmpeg.sh
         $GITHUB_WORKSPACE/scripts/build-ffmpeg.sh
