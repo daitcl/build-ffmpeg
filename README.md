@@ -16,7 +16,7 @@ Push a tag starting with 'v' to trigger automatic builds:
 ```bash
 git tag v1.0.0
 git push origin v1.0.0
-
+```
 ## 🚀 使用说明
 
 1. **创建 GitHub 仓库**
@@ -24,7 +24,9 @@ git push origin v1.0.0
    - 确保所有脚本具有执行权限
 
 2. **触发编译**
+
    ```bash
    # 创建标签触发编译
    git tag v1.0.0
    git push origin v1.0.0
+   ```
